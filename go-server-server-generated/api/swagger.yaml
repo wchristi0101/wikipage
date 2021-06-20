@@ -7,26 +7,26 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 1.0.0
+  version: 1.0.1
 servers:
-- url: https://virtserver.swaggerhub.com/VoithAPI/WikipediaAPI/1.0.0
+- url: https://virtserver.swaggerhub.com/VoithAPI/WikipediaAPI/1.0.1
   description: SwaggerHub API Auto Mocking
-- url: https://127.0.0.1:7171/
+- url: https://localhost:8080/
   description: Local host for go server
 tags:
 - name: wikipedia
   description: Allows you to search a wikipage
 paths:
-  /wikipages/{url}:
+  /wikipages:
     get:
       description: "Return all data in website, filtered by catagory"
       parameters:
       - name: url
-        in: path
+        in: query
         description: url of wikipage
         required: true
-        style: simple
-        explode: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: filter
@@ -56,16 +56,16 @@ paths:
         "404":
           description: "Resource Not Found, either the url is wrong, or there is an\
             \ invalid filter"
-  /wikipages/{url}/ImageSRCs:
+  /wikipages/ImageSRCs:
     get:
       description: Returns a list of images on a website
       parameters:
       - name: url
-        in: path
+        in: query
         description: url of wikipage
         required: true
-        style: simple
-        explode: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: sort
@@ -131,16 +131,16 @@ paths:
         "404":
           description: "Resource Not Found, either the url is wrong, contains, !contains,\
             \ is, !is contain invalid filters"
-  /wikipages/{url}/WebsiteLinks:
+  /wikipages/WebsiteLinks:
     get:
       description: List of all links on a website
       parameters:
       - name: url
-        in: path
+        in: query
         description: url of wikipage
         required: true
-        style: simple
-        explode: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: sort
@@ -206,16 +206,16 @@ paths:
         "404":
           description: "Resource Not Found, either the url is wrong, contains, !contains,\
             \ is, !is contain invalid filters"
-  /wikipages/{url}/WebsitePages:
+  /wikipages/WebsitePages:
     get:
       description: Return website information
       parameters:
       - name: url
-        in: path
+        in: query
         description: url of wikipage
         required: true
-        style: simple
-        explode: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: contains
@@ -246,16 +246,16 @@ paths:
         "404":
           description: "Resource Not Found, either the url is wrong, contains, !contains,\
             \ contain invalid filters"
-  /wikipages/{url}/WebsiteData:
+  /wikipages/WebsiteData:
     get:
       description: Return website information
       parameters:
       - name: url
-        in: path
+        in: query
         description: url of wikipage
         required: true
-        style: simple
-        explode: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: contains
