@@ -1,7 +1,8 @@
+
 # wikipage
 Given a wiki page URL, gives data related to it
 
-Code is generated from OpenAPI 3.0. You can find documentation in the documentation folder or at https://app.swaggerhub.com/apis/VoithAPI/WikipediaAPI/1.0.1
+Code is generated from OpenAPI 3.0. You can find documentation in the documentation folder or : [html2-documentation-generated.zip](https://github.com/wchristi0101/wikipage/files/6683217/html2-documentation-generated.zip)
 
 To run the server goto ~/go-server-server-generated and run go run main.go
 
