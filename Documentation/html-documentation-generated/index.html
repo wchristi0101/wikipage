@@ -182,8 +182,8 @@
     <div class="app-desc">This is an api that searches a wikipage</div>
     <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
     <div class="app-desc">Contact Info: <a href="bchristian14@gmail.com">bchristian14@gmail.com</a></div>
-    <div class="app-desc">Version: 1.0.0</div>
-    <div class="app-desc">BasePath:/VoithAPI/WikipediaAPI/1.0.0</div>
+    <div class="app-desc">Version: 1.0.1</div>
+    <div class="app-desc">BasePath:/VoithAPI/WikipediaAPI/1.0.1</div>
     <div class="license-info">Apache 2.0</div>
     <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
   <h2>Access</h2>
@@ -195,33 +195,30 @@
   <div class="method-summary"></div>
   <h4><a href="#Default">Default</a></h4>
   <ul>
-  <li><a href="#wikipagesUrlGet"><code><span class="http-method">get</span> /wikipages/{url}</code></a></li>
-  <li><a href="#wikipagesUrlImageSRCsGet"><code><span class="http-method">get</span> /wikipages/{url}/ImageSRCs</code></a></li>
-  <li><a href="#wikipagesUrlWebsiteDataGet"><code><span class="http-method">get</span> /wikipages/{url}/WebsiteData</code></a></li>
-  <li><a href="#wikipagesUrlWebsiteLinksGet"><code><span class="http-method">get</span> /wikipages/{url}/WebsiteLinks</code></a></li>
-  <li><a href="#wikipagesUrlWebsitePagesGet"><code><span class="http-method">get</span> /wikipages/{url}/WebsitePages</code></a></li>
+  <li><a href="#wikipagesGet"><code><span class="http-method">get</span> /wikipages</code></a></li>
+  <li><a href="#wikipagesImageSRCsGet"><code><span class="http-method">get</span> /wikipages/ImageSRCs</code></a></li>
+  <li><a href="#wikipagesWebsiteDataGet"><code><span class="http-method">get</span> /wikipages/WebsiteData</code></a></li>
+  <li><a href="#wikipagesWebsiteLinksGet"><code><span class="http-method">get</span> /wikipages/WebsiteLinks</code></a></li>
+  <li><a href="#wikipagesWebsitePagesGet"><code><span class="http-method">get</span> /wikipages/WebsitePages</code></a></li>
   </ul>
 
   <h1><a name="Default">Default</a></h1>
-  <div class="method"><a name="wikipagesUrlGet"></a>
+  <div class="method"><a name="wikipagesGet"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages/{url}</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">wikipagesUrlGet</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">wikipagesGet</span>)</div>
     <div class="method-notes">Return all data in website, filtered by catagory</div>
 
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">url (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; url of wikipage </div>    </div>  <!-- field-items -->
 
 
 
 
     <h3 class="field-label">Query parameters</h3>
     <div class="field-items">
-      <div class="param">filter (optional)</div>
+      <div class="param">url (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; url of wikipage </div>      <div class="param">filter (optional)</div>
       
             <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
 
@@ -294,25 +291,22 @@
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="wikipagesUrlImageSRCsGet"></a>
+  <div class="method"><a name="wikipagesImageSRCsGet"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages/{url}/ImageSRCs</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">wikipagesUrlImageSRCsGet</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages/ImageSRCs</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">wikipagesImageSRCsGet</span>)</div>
     <div class="method-notes">Returns a list of images on a website</div>
 
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">url (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; url of wikipage </div>    </div>  <!-- field-items -->
 
 
 
 
     <h3 class="field-label">Query parameters</h3>
     <div class="field-items">
-      <div class="param">sort (optional)</div>
+      <div class="param">url (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; url of wikipage </div>      <div class="param">sort (optional)</div>
       
             <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">contains (optional)</div>
       
@@ -360,25 +354,22 @@
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="wikipagesUrlWebsiteDataGet"></a>
+  <div class="method"><a name="wikipagesWebsiteDataGet"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages/{url}/WebsiteData</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">wikipagesUrlWebsiteDataGet</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages/WebsiteData</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">wikipagesWebsiteDataGet</span>)</div>
     <div class="method-notes">Return website information</div>
 
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">url (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; url of wikipage </div>    </div>  <!-- field-items -->
 
 
 
 
     <h3 class="field-label">Query parameters</h3>
     <div class="field-items">
-      <div class="param">contains (optional)</div>
+      <div class="param">url (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; url of wikipage </div>      <div class="param">contains (optional)</div>
       
             <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; list of key words the header, label, or data must contain </div>      <div class="param">!contains (optional)</div>
       
@@ -434,25 +425,22 @@
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="wikipagesUrlWebsiteLinksGet"></a>
+  <div class="method"><a name="wikipagesWebsiteLinksGet"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages/{url}/WebsiteLinks</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">wikipagesUrlWebsiteLinksGet</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages/WebsiteLinks</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">wikipagesWebsiteLinksGet</span>)</div>
     <div class="method-notes">List of all links on a website</div>
 
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">url (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; url of wikipage </div>    </div>  <!-- field-items -->
 
 
 
 
     <h3 class="field-label">Query parameters</h3>
     <div class="field-items">
-      <div class="param">sort (optional)</div>
+      <div class="param">url (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; url of wikipage </div>      <div class="param">sort (optional)</div>
       
             <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">contains (optional)</div>
       
@@ -500,25 +488,22 @@
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="wikipagesUrlWebsitePagesGet"></a>
+  <div class="method"><a name="wikipagesWebsitePagesGet"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages/{url}/WebsitePages</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">wikipagesUrlWebsitePagesGet</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages/WebsitePages</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">wikipagesWebsitePagesGet</span>)</div>
     <div class="method-notes">Return website information</div>
 
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">url (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; url of wikipage </div>    </div>  <!-- field-items -->
 
 
 
 
     <h3 class="field-label">Query parameters</h3>
     <div class="field-items">
-      <div class="param">contains (optional)</div>
+      <div class="param">url (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; url of wikipage </div>      <div class="param">contains (optional)</div>
       
             <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; list of key words the header or body must contain </div>      <div class="param">!contains (optional)</div>
       
