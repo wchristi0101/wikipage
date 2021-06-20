@@ -1,0 +1,685 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Wikipedia API</title>
+    <style type="text/css">
+      body {
+      	font-family: Trebuchet MS, sans-serif;
+      	font-size: 15px;
+      	color: #444;
+      	margin-right: 24px;
+      }
+      
+      h1	{
+      	font-size: 25px;
+      }
+      h2	{
+      	font-size: 20px;
+      }
+      h3	{
+      	font-size: 16px;
+      	font-weight: bold;
+      }
+      hr	{
+      	height: 1px;
+      	border: 0;
+      	color: #ddd;
+      	background-color: #ddd;
+      }
+      
+      .app-desc {
+        clear: both;
+        margin-left: 20px;
+      }
+      .param-name {
+        width: 100%;
+      }
+      .license-info {
+        margin-left: 20px;
+      }
+      
+      .license-url {
+        margin-left: 20px;
+      }
+      
+      .model {
+        margin: 0 0 0px 20px;
+      }
+      
+      .method {
+        margin-left: 20px;
+      }
+      
+      .method-notes	{
+      	margin: 10px 0 20px 0;
+      	font-size: 90%;
+      	color: #555;
+      }
+      
+      pre {
+        padding: 10px;
+        margin-bottom: 2px;
+      }
+      
+      .http-method {
+       text-transform: uppercase;
+      }
+      
+      pre.get {
+        background-color: #0f6ab4;
+      }
+      
+      pre.post {
+        background-color: #10a54a;
+      }
+      
+      pre.put {
+        background-color: #c5862b;
+      }
+      
+      pre.delete {
+        background-color: #a41e22;
+      }
+      
+      .huge	{
+      	color: #fff;
+      }
+      
+      pre.example {
+        background-color: #f3f3f3;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      
+      code {
+        white-space: pre;
+      }
+      
+      .nickname {
+        font-weight: bold;
+      }
+      
+      .method-path {
+        font-size: 1.5em;
+        background-color: #0f6ab4;
+      }
+      
+      .up {
+        float:right;
+      }
+      
+      .parameter {
+        width: 500px;
+      }
+      
+      .param {
+        width: 500px;
+        padding: 10px 0 0 20px;
+        font-weight: bold;
+      }
+      
+      .param-desc {
+        width: 700px;
+        padding: 0 0 0 20px;
+        color: #777;
+      }
+      
+      .param-type {
+        font-style: italic;
+      }
+      
+      .param-enum-header {
+      width: 700px;
+      padding: 0 0 0 60px;
+      color: #777;
+      font-weight: bold;
+      }
+      
+      .param-enum {
+      width: 700px;
+      padding: 0 0 0 80px;
+      color: #777;
+      font-style: italic;
+      }
+      
+      .field-label {
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      
+      .field-items	{
+      	padding: 0 0 15px 0;
+      	margin-bottom: 15px;
+      }
+      
+      .return-type {
+        clear: both;
+        padding-bottom: 10px;
+      }
+      
+      .param-header {
+        font-weight: bold;
+      }
+      
+      .method-tags {
+        text-align: right;
+      }
+      
+      .method-tag {
+        background: none repeat scroll 0% 0% #24A600;
+        border-radius: 3px;
+        padding: 2px 10px;
+        margin: 2px;
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+  <h1>Wikipedia API</h1>
+    <div class="app-desc">This is an api that searches a wikipage</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="bchristian14@gmail.com">bchristian14@gmail.com</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/VoithAPI/WikipediaAPI/1.0.0</div>
+    <div class="license-info">Apache 2.0</div>
+    <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Default">Default</a></h4>
+  <ul>
+  <li><a href="#wikipagesUrlGet"><code><span class="http-method">get</span> /wikipages/{url}</code></a></li>
+  <li><a href="#wikipagesUrlImageSRCsGet"><code><span class="http-method">get</span> /wikipages/{url}/ImageSRCs</code></a></li>
+  <li><a href="#wikipagesUrlWebsiteDataGet"><code><span class="http-method">get</span> /wikipages/{url}/WebsiteData</code></a></li>
+  <li><a href="#wikipagesUrlWebsiteLinksGet"><code><span class="http-method">get</span> /wikipages/{url}/WebsiteLinks</code></a></li>
+  <li><a href="#wikipagesUrlWebsitePagesGet"><code><span class="http-method">get</span> /wikipages/{url}/WebsitePages</code></a></li>
+  </ul>
+
+  <h1><a name="Default">Default</a></h1>
+  <div class="method"><a name="wikipagesUrlGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages/{url}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">wikipagesUrlGet</span>)</div>
+    <div class="method-notes">Return all data in website, filtered by catagory</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">url (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; url of wikipage </div>    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">filter (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Website">Website</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "WebsiteLinks" : [ {
+    "url" : "http://example.com/aeiou"
+  }, {
+    "url" : "http://example.com/aeiou"
+  } ],
+  "ImageSRCs" : [ {
+    "src" : "http://example.com/aeiou"
+  }, {
+    "src" : "http://example.com/aeiou"
+  } ],
+  "WebsitePages" : [ {
+    "header" : "header",
+    "body" : "body"
+  }, {
+    "header" : "header",
+    "body" : "body"
+  } ],
+  "WebsiteData" : [ {
+    "header" : "header",
+    "label" : [ {
+      "data" : "data",
+      "label" : "label"
+    }, {
+      "data" : "data",
+      "label" : "label"
+    } ]
+  }, {
+    "header" : "header",
+    "label" : [ {
+      "data" : "data",
+      "label" : "label"
+    }, {
+      "data" : "data",
+      "label" : "label"
+    } ]
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Website data
+        <a href="#Website">Website</a>
+    <h4 class="field-label">400</h4>
+    Bad Gateway, the response could not be understood by the server
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Resource Not Found, either the url is wrong, or there is an invalid filter
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="wikipagesUrlImageSRCsGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages/{url}/ImageSRCs</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">wikipagesUrlImageSRCsGet</span>)</div>
+    <div class="method-notes">Returns a list of images on a website</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">url (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; url of wikipage </div>    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">sort (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">contains (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">!contains (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">is (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">!is (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ImageSRCs">ImageSRCs</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "src" : "http://example.com/aeiou"
+}, {
+  "src" : "http://example.com/aeiou"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    List of image SRCs
+        <a href="#ImageSRCs">ImageSRCs</a>
+    <h4 class="field-label">400</h4>
+    Bad Gateway, the response could not be understood by the server
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Resource Not Found, either the url is wrong, contains, !contains, is, !is contain invalid filters
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="wikipagesUrlWebsiteDataGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages/{url}/WebsiteData</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">wikipagesUrlWebsiteDataGet</span>)</div>
+    <div class="method-notes">Return website information</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">url (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; url of wikipage </div>    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">contains (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; list of key words the header, label, or data must contain </div>      <div class="param">!contains (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; list of key words the header, label, or data can not contain </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#WebsiteData">WebsiteData</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "header" : "header",
+  "label" : [ {
+    "data" : "data",
+    "label" : "label"
+  }, {
+    "data" : "data",
+    "label" : "label"
+  } ]
+}, {
+  "header" : "header",
+  "label" : [ {
+    "data" : "data",
+    "label" : "label"
+  }, {
+    "data" : "data",
+    "label" : "label"
+  } ]
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Website Data
+        <a href="#WebsiteData">WebsiteData</a>
+    <h4 class="field-label">400</h4>
+    Bad Gateway, the response could not be understood by the server
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Resource Not Found, either the url is wrong, contains, !contains, contain invalid filters
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="wikipagesUrlWebsiteLinksGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages/{url}/WebsiteLinks</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">wikipagesUrlWebsiteLinksGet</span>)</div>
+    <div class="method-notes">List of all links on a website</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">url (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; url of wikipage </div>    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">sort (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">contains (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">!contains (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">is (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">!is (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#WebsiteLinks">WebsiteLinks</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "url" : "http://example.com/aeiou"
+}, {
+  "url" : "http://example.com/aeiou"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Website links
+        <a href="#WebsiteLinks">WebsiteLinks</a>
+    <h4 class="field-label">400</h4>
+    Bad Gateway, the response could not be understood by the server
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Resource Not Found, either the url is wrong, contains, !contains, is, !is contain invalid filters
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="wikipagesUrlWebsitePagesGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /wikipages/{url}/WebsitePages</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">wikipagesUrlWebsitePagesGet</span>)</div>
+    <div class="method-notes">Return website information</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">url (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; url of wikipage </div>    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">contains (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; list of key words the header or body must contain </div>      <div class="param">!contains (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; list of key words the header or body can not contain </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#WebsitePages">WebsitePages</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "header" : "header",
+  "body" : "body"
+}, {
+  "header" : "header",
+  "body" : "body"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Website Data
+        <a href="#WebsitePages">WebsitePages</a>
+    <h4 class="field-label">400</h4>
+    Bad Gateway, the response could not be understood by the server
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Resource Not Found, either the url is wrong, contains, !contains, contain invalid filters
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#ImageSRCs"><code>ImageSRCs</code></a></li>
+    <li><a href="#ImageSRCs_inner"><code>ImageSRCs_inner</code></a></li>
+    <li><a href="#Website"><code>Website</code></a></li>
+    <li><a href="#WebsiteData"><code>WebsiteData</code></a></li>
+    <li><a href="#WebsiteData_inner"><code>WebsiteData_inner</code></a></li>
+    <li><a href="#WebsiteLinks"><code>WebsiteLinks</code></a></li>
+    <li><a href="#WebsiteLinks_inner"><code>WebsiteLinks_inner</code></a></li>
+    <li><a href="#WebsitePages"><code>WebsitePages</code></a></li>
+    <li><a href="#WebsitePages_inner"><code>WebsitePages_inner</code></a></li>
+    <li><a href="#contains"><code>contains</code></a></li>
+    <li><a href="#contains_1"><code>contains_1</code></a></li>
+    <li><a href="#contains_2"><code>contains_2</code></a></li>
+    <li><a href="#contains_3"><code>contains_3</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="ImageSRCs"><code>ImageSRCs</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ImageSRCs_inner"><code>ImageSRCs_inner</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">src </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: url</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Website"><code>Website</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">ImageSRCs (optional)</div><div class="param-desc"><span class="param-type"><a href="#ImageSRCs">ImageSRCs</a></span>  </div>
+<div class="param">WebsiteLinks (optional)</div><div class="param-desc"><span class="param-type"><a href="#WebsiteLinks">WebsiteLinks</a></span>  </div>
+<div class="param">WebsitePages (optional)</div><div class="param-desc"><span class="param-type"><a href="#WebsitePages">WebsitePages</a></span>  </div>
+<div class="param">WebsiteData (optional)</div><div class="param-desc"><span class="param-type"><a href="#WebsiteData">WebsiteData</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="WebsiteData"><code>WebsiteData</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Data Properties for a wikipage (data in sidebar)</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="WebsiteData_inner"><code>WebsiteData_inner</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">header (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> optional header property </div>
+<div class="param">label </div><div class="param-desc"><span class="param-type"><a href="#object">array[Object]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="WebsiteLinks"><code>WebsiteLinks</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="WebsiteLinks_inner"><code>WebsiteLinks_inner</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">url </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: url</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="WebsitePages"><code>WebsitePages</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="WebsitePages_inner"><code>WebsitePages_inner</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">header </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="contains"><code>contains</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">header (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">body (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="contains_1"><code>contains_1</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">header (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">body (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="contains_2"><code>contains_2</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">header (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">label (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="contains_3"><code>contains_3</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">header (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">label (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

@@ -1,0 +1,465 @@
+openapi: 3.0.0
+info:
+  title: Wikipedia API
+  description: This is an api that searches a wikipage
+  contact:
+    email: bchristian14@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/VoithAPI/WikipediaAPI/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://127.0.0.1:7171/
+  description: Local host for go server
+tags:
+- name: wikipedia
+  description: Allows you to search a wikipage
+paths:
+  /wikipages/{url}:
+    get:
+      description: "Return all data in website, filtered by catagory"
+      parameters:
+      - name: url
+        in: path
+        description: url of wikipage
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: filter
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Filter elements
+          items:
+            type: string
+            enum:
+            - ImageSRCs
+            - WebsiteLinks
+            - WebsitePages
+            - WebsiteData
+      responses:
+        "200":
+          description: Website data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Website'
+        "400":
+          description: "Bad Gateway, the response could not be understood by the server"
+        "404":
+          description: "Resource Not Found, either the url is wrong, or there is an\
+            \ invalid filter"
+  /wikipages/{url}/ImageSRCs:
+    get:
+      description: Returns a list of images on a website
+      parameters:
+      - name: url
+        in: path
+        description: url of wikipage
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          description: Allows you to sort alphabetically
+          enum:
+          - asc(alphabetical)
+          - desc(alphabetical)
+      - name: contains
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Filter elements
+          items:
+            type: string
+      - name: '!contains'
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Filter elements
+          items:
+            type: string
+      - name: is
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Filter elements
+          items:
+            type: string
+      - name: '!is'
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Filter elements
+          items:
+            type: string
+      responses:
+        "200":
+          description: List of image SRCs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageSRCs'
+        "400":
+          description: "Bad Gateway, the response could not be understood by the server"
+        "404":
+          description: "Resource Not Found, either the url is wrong, contains, !contains,\
+            \ is, !is contain invalid filters"
+  /wikipages/{url}/WebsiteLinks:
+    get:
+      description: List of all links on a website
+      parameters:
+      - name: url
+        in: path
+        description: url of wikipage
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          description: Allows you to sort alphabetically
+          enum:
+          - asc(alphabetical)
+          - desc(alphabetical)
+      - name: contains
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Filter elements
+          items:
+            type: string
+      - name: '!contains'
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Filter elements
+          items:
+            type: string
+      - name: is
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Filter elements
+          items:
+            type: string
+      - name: '!is'
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          description: Filter elements
+          items:
+            type: string
+      responses:
+        "200":
+          description: Website links
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebsiteLinks'
+        "400":
+          description: "Bad Gateway, the response could not be understood by the server"
+        "404":
+          description: "Resource Not Found, either the url is wrong, contains, !contains,\
+            \ is, !is contain invalid filters"
+  /wikipages/{url}/WebsitePages:
+    get:
+      description: Return website information
+      parameters:
+      - name: url
+        in: path
+        description: url of wikipage
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: contains
+        in: query
+        description: list of key words the header or body must contain
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/contains'
+      - name: '!contains'
+        in: query
+        description: list of key words the header or body can not contain
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/contains_1'
+      responses:
+        "200":
+          description: Website Data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebsitePages'
+        "400":
+          description: "Bad Gateway, the response could not be understood by the server"
+        "404":
+          description: "Resource Not Found, either the url is wrong, contains, !contains,\
+            \ contain invalid filters"
+  /wikipages/{url}/WebsiteData:
+    get:
+      description: Return website information
+      parameters:
+      - name: url
+        in: path
+        description: url of wikipage
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: contains
+        in: query
+        description: "list of key words the header, label, or data must contain"
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/contains_2'
+      - name: '!contains'
+        in: query
+        description: "list of key words the header, label, or data can not contain"
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/contains_3'
+      responses:
+        "200":
+          description: Website Data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebsiteData'
+        "400":
+          description: "Bad Gateway, the response could not be understood by the server"
+        "404":
+          description: "Resource Not Found, either the url is wrong, contains, !contains,\
+            \ contain invalid filters"
+components:
+  schemas:
+    Website:
+      type: object
+      properties:
+        ImageSRCs:
+          $ref: '#/components/schemas/ImageSRCs'
+        WebsiteLinks:
+          $ref: '#/components/schemas/WebsiteLinks'
+        WebsitePages:
+          $ref: '#/components/schemas/WebsitePages'
+        WebsiteData:
+          $ref: '#/components/schemas/WebsiteData'
+      example:
+        WebsiteLinks:
+        - url: http://example.com/aeiou
+        - url: http://example.com/aeiou
+        ImageSRCs:
+        - src: http://example.com/aeiou
+        - src: http://example.com/aeiou
+        WebsitePages:
+        - header: header
+          body: body
+        - header: header
+          body: body
+        WebsiteData:
+        - header: header
+          label:
+          - data: data
+            label: label
+          - data: data
+            label: label
+        - header: header
+          label:
+          - data: data
+            label: label
+          - data: data
+            label: label
+    ImageSRCs:
+      type: array
+      items:
+        $ref: '#/components/schemas/ImageSRCs_inner'
+      x-schema-name: ImageSRCs
+    WebsiteLinks:
+      type: array
+      items:
+        $ref: '#/components/schemas/WebsiteLinks_inner'
+      x-schema-name: WebsiteLinks
+    WebsitePages:
+      type: array
+      items:
+        $ref: '#/components/schemas/WebsitePages_inner'
+      x-schema-name: WebsitePages
+    WebsiteData:
+      type: array
+      description: Data Properties for a wikipage (data in sidebar)
+      items:
+        $ref: '#/components/schemas/WebsiteData_inner'
+      x-schema-name: WebsiteData
+    contains:
+      type: object
+      properties:
+        header:
+          type: array
+          items:
+            type: string
+        body:
+          type: array
+          items:
+            type: string
+    contains_1:
+      type: object
+      properties:
+        header:
+          type: array
+          items:
+            type: string
+        body:
+          type: array
+          items:
+            type: string
+    contains_2:
+      type: object
+      properties:
+        header:
+          type: array
+          items:
+            type: string
+        label:
+          type: array
+          items:
+            type: string
+        data:
+          type: array
+          items:
+            type: string
+    contains_3:
+      type: object
+      properties:
+        header:
+          type: array
+          items:
+            type: string
+        label:
+          type: array
+          items:
+            type: string
+        data:
+          type: array
+          items:
+            type: string
+    ImageSRCs_inner:
+      required:
+      - src
+      type: object
+      properties:
+        src:
+          type: string
+          format: url
+      example:
+        src: http://example.com/aeiou
+    WebsiteLinks_inner:
+      required:
+      - url
+      type: object
+      properties:
+        url:
+          type: string
+          format: url
+      example:
+        url: http://example.com/aeiou
+    WebsitePages_inner:
+      required:
+      - body
+      - header
+      type: object
+      properties:
+        header:
+          type: string
+        body:
+          type: string
+      example:
+        header: header
+        body: body
+    WebsiteData_inner:
+      required:
+      - label
+      type: object
+      properties:
+        header:
+          type: string
+          description: optional header property
+        label:
+          type: array
+          items:
+            required:
+            - data
+            - label
+            type: object
+            properties:
+              label:
+                type: string
+                description: label
+              data:
+                type: string
+                description: data which label references
+            description: list of data objects
+            example:
+              data: data
+              label: label
+      example:
+        header: header
+        label:
+        - data: data
+          label: label
+        - data: data
+          label: label
